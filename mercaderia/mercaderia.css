@@ -1,0 +1,96 @@
+/* Formatting the body */
+body {
+  background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
+    radial-gradient(
+      91% 146%,
+      rgba(255, 255, 255, 0.5) 47%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  font-family: "Roboto", sans-serif;
+}
+
+/* Formatting the table */
+.table {
+  width: 90%;
+  max-width: 1800px;
+  margin: 20px auto;
+  border-radius: 6px;
+  /* box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4), 8px 32px 32px rgba(0, 0, 0, 0.4),
+    8px 64px 64px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 0px 0px 10px;
+  overflow: hidden;
+  border: 2px solid gray;
+}
+
+.tableFixHead {
+  overflow-y: auto;
+  height: 455px;
+  background-color: #efe3e2;
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableFixHead th,
+.tableFixHead td {
+  padding: 4px 6px;
+  font-weight: bolder;
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+  color: #343a40;
+  font-size: larger;
+  background-color: #efe3e2;
+}
+
+.sortable {
+  font-size: medium;
+}
+
+th {
+  color: brown !important;
+}
+/* End Formatting the table */
+
+/* h2 y btn text bold */
+h2,
+.btn {
+  font-weight: bold;
+}
+
+/* btn shadow */
+.btn {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5), 8px 32px 32px rgba(0, 0, 0, 0.2),
+    8px 64px 64px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: darkgreen;
+  color: #fff;
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+}
+
+/* form-control shadow */
+.form-control {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2), 8px 32px 32px rgba(0, 0, 0, 0.2),
+    8px 64px 64px rgba(0, 0, 0, 0.2);
+}
+
+table.sortable tbody tr:nth-child(2n) td {
+  background: #e7d8c9;
+}
+table.sortable tbody tr:nth-child(2n + 1) td {
+  background: #e6beae;
+}
+
+/* Change cursor and color on hover */
+.sort:hover {
+  color: blue !important;
+  cursor: pointer;
+}

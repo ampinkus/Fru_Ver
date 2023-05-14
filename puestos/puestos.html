@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puestos</title>
+    <!-- Prefiero agregar en el Header todas las librerías y enlaces para el proyecto
+         En este proyecto las que corresponden a Bootstrap 5 y Firebase 9  -->
+
+    <!--Bootstrap 5 CSS link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <!--Bootstrap 5 CSS link added -->
+
+    <!--Bootstrap 5 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <!--Bootstrap 5 JS added -->
+
+    <!-- Bootstrap Icons CSS para usar los íconos solo con el nombre de la clase  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons CSS added  -->
+
+    <!-- Add Firebase JS library -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <!-- Firebase JS library added -->
+
+    <!-- The details of the Firebase database -->
+    <script>
+      const firebaseApp = firebase.initializeApp({
+        /* Firebase config */
+        apiKey:
+        authDomain:
+        projectId:
+        storageBucket:
+        messagingSenderId:
+        appId:
+        measurementId:
+      });
+      const auth = firebaseApp.auth();
+      const db = firebaseApp.firestore(); // to refer to the database using db
+      console.log(db);
+    </script>
+    <!-- The details of the Firebase database  added-->
+
+    <link rel="stylesheet" href="puestos.css" />
+
+    <!-- Google Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  </head>
+
+ <body>
+    <div class="container-fluid">
+
+      <!-- Agregar Puestos -->
+      <h2 id="titPuestos"  class="text-center my-3">Agregar y ver Puestos</h2>
+      <div class="forma">
+        <div class="row">
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control my-3" id="nombre" placeholder="Nombre" aria-label="Nombre">
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control my-3" id="razonSocial" placeholder="Razón Social" aria-label="Razon Social">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control my-3" id="nave" placeholder="Nave" aria-label="Nave">
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control my-3"  id="puesto" placeholder="Puesto" aria-label="Puesto">
+          </div>
+        </div>
+      </div>
+        <!-- Fin Agregar Puestos -->
+
+        <!-- Agregar boton Menu Inicio-->
+         <a id="botonInicio" class="btn btn-info  mx-3 my-3" onclick="window.location.href='../index.html'">Menu Inicio</a>
+        <!-- Fin Agregar boton Menu Inicio -->
+
+        <!-- Agregar boton guardar -->
+        <a id="botonGuardar" class="btn btn-info mx-3 my-3"  onclick="guardar()">Guardar</a>
+        <!-- Fin Agregar boton guardar -->
+
+        <!-- Agregar boton ver todos -->
+          <a id="botonTodos" class="btn btn-info mx-3 my-3" onclick="todos()">Ver Todos</a>
+        <!-- Fin Agregar boton ver todos -->
+  
+        <!-- Agregar boton ver papelera -->
+          <a id="botonPapelera" class="btn btn-info mx-3 my-3" onclick="papelera()">Papelera</a>
+        <!-- Fin Agregar boton papelera -->
+
+         <!-- Agrego la forma para hacer el search -->
+         <div class="form-group col-md-2 my-3">
+          <input type="search" placeholder="Buscar.." class="form-control search-input" data-table="sortable"/>
+      </div>
+      <h6 class="text-center">Para ordenar la tabla hacer click en los nombres de las columnas</h6>
+
+
+        <!-- Agregar Tabla -->
+        <div class="table tableFixHead table-striped my-3 container-fluid">
+          <table class="sortable">
+            <thead>
+              <tr>
+                <th scope="col" class="sort">Código</th>
+                <th scope="col" class="sort">Nombre</th>
+                <th scope="col" class="sort">Razón Social</th>
+                <th scope="col" class="sort">Nave</th>
+                <th scope="col" class="sort">Puesto</th>
+                <th scope="col"  class="sorttable_ddmm sort">Fecha</th>
+                <!-- para que el color de la fila llegue hasta el final -->
+                <th scope="col" class="sorttable_nosort" id="borrar">Borrar</th>
+                <th scope="col" class="sorttable_nosort" id="editar">Editar</th>
+              </tr>
+            </thead>
+            <!-- tengo que poner un id al body de la tabla -->
+            <tbody id="tabla"></tbody>
+          </table>
+        </div>
+        <!-- Fin Agregar Tabla -->
+      </div>
+    </div>
+    <script src="puestos.js"></script>
+     <!-- Libreria para hacer el sort de las columnas -->
+     <script src="../modulos/sorttable.js"></script>
+     <!-- Libreria para la búsqueda de las columnas -->
+      <script src="../modulos/filter.js"></script>
+     <!-- Toastify js -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+     <!-- Invoco la función todos() al terminar de cargar la página -->
+      <script type="text/javascript">
+        todos();
+      </script>
+  </body>
+</html>

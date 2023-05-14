@@ -1,0 +1,23 @@
+/* style footer */
+footer {
+  position: fixed;
+  height: 90px;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+/* center social network icons */
+li {
+  line-height: 60px;
+}
+
+/* Change Navbar on hover text color */
+.nav-link:hover {
+  color: chocolate;
+}

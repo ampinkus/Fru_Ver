@@ -1,2 +1,2 @@
 # Fru_Ver
-Prueba del proyecto para mostrar en el portfolio
+Prueba del proyecto Fru y Ver para mostrar en el portfolio
